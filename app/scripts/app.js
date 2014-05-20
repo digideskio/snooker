@@ -10,8 +10,7 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/home.html'
       })
       .when('/new', {
         templateUrl: 'views/new-game.html',
