@@ -6,8 +6,8 @@ angular.module('snookerApp')
 
     $scope.addPlayer = function() {
       $scope.players.push({name: $scope.playerName, target: $scope.targetScore});
-      $scope.playerName = "";
-      $scope.targetScore = "";
+      $scope.playerName = '';
+      $scope.targetScore = '';
     };
 
     $scope.removePlayer = function(idx) {
