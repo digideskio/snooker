@@ -18,6 +18,14 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    // Will deploy the dist folder to GitHub
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: ['**']
+    },
+
     // Project settings
     yeoman: {
       // configurable paths
