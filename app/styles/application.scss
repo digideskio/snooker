@@ -20,6 +20,11 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 header {
   margin-bottom: 30px;
   text-align: center;
+  a { color: slategrey; }
+  a:hover {
+    text-decoration: none;
+    color: darkgrey;
+  }
 }
 
 .jumbotron {
