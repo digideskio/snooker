@@ -1,0 +1,45 @@
+<h1>{{player.name}}: {{player.score}}/{{player.target}}</h1>
+
+<div class="row top-buffer-lg">
+  <div class="col-xs-3">
+    <button ng-click="addToScore(2)" class="btn btn-large btn-default">Canon<br />(2)</button>
+  </div>
+  <div class="col-xs-3">
+    <button ng-click="addToScore(2)" class="btn btn-large btn-default">Yellow<br />(2)</button>
+  </div>
+  <div class="col-xs-3">
+    <button ng-click="addToScore(3)" class="btn btn-large btn-default">Green<br />(3)</button>
+  </div>
+  <div class="col-xs-3">
+    <button ng-click="addToScore(5)" class="btn btn-large btn-default">Blue<br />(5)</button>
+  </div>
+</div>
+<div class="row top-buffer">
+  <div class="col-xs-3">
+    <button ng-click="addToScore(6)" class="btn btn-large btn-default">Pink<br />(6)</button>
+  </div>
+  <div class="col-xs-3">
+    <button ng-click="addToScore(7)" class="btn btn-large btn-default">Black<br />(7)</button>
+  </div>
+  <div class="col-xs-3">
+    <button ng-click="resetScore()" class="btn btn-large btn-default">Foul<br />(0)</button>
+  </div>
+  <div class="col-xs-3">
+    <button ng-click="resetScore()" class="btn btn-large btn-default">Poo<br />(0)</button>
+  </div>
+</div>
+
+<div class="row top-buffer">
+  <div class="col-xs-12">
+    <button ng-click="" class="no-label btn btn-primary btn-block btn-lg">Next Player</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6">
+    <a href="#" class="no-label btn btn-block btn-lg">Back</a>
+  </div>
+  <div class="col-xs-6">
+    <a href="#" class="no-label btn btn-block btn-lg">Undo</a>
+  </div>
+</div>

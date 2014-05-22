@@ -19,6 +19,14 @@ angular
         templateUrl: 'views/new-game.html',
         controller: 'NewGameCtrl'
       })
+      .when('/game', {
+        templateUrl: 'views/game.html',
+        controller: 'GameCtrl'
+      })
+      .when('/game/score/:playerId', {
+        templateUrl: 'views/score.html',
+        controller: 'ScoreCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

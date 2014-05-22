@@ -44,3 +44,11 @@ header {
 .no-label {
   margin-top: 25px;
 }
+
+
+#scoreboard {
+  font-size: 2em;
+  color: slategrey;
+  small { font-size: 50%; }
+  td { vertical-align: bottom; }
+}
