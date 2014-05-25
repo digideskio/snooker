@@ -31,6 +31,9 @@ header {
   margin: 15px 0px;
 }
 
+.no-top-buffer {
+  margin-top: 0px;
+}
 .top-buffer {
   margin-top: 10px;
 }
@@ -51,4 +54,32 @@ header {
   color: slategrey;
   small { font-size: 50%; }
   td { vertical-align: bottom; }
+}
+
+.btn-round {
+  display: block;
+  width: 65px;
+  height: 65px;
+  line-height: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  border: 2px solid #f5f5f5;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color:#f5f5f5;
+  background: #464646;
+  box-shadow: 0 0 3px gray;
+  &:hover {
+    color:#f5f5f5;
+    background: #262626;
+  }
+  &.canon { background: white; }
+  &.yellow { background: yellow; color: #464646; }
+  &.green { background: green; }
+  &.blue { background: blue; }
+  &.pink { background: #FF64C8; }
+  &.black { background: black; }
+  &.foul { background: white; color: #E53939; }
+  &.poo { background: #9C6D39; }
 }
