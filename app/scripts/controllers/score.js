@@ -1,16 +1,18 @@
 'use strict';
 
 angular.module('snookerApp')
-  .controller('ScoreCtrl', function ($scope, $routeParams) {
-    $scope.game = JSON.parse(localStorage.getItem('snookerGame'));
-    $scope.player = $scope.game && $scope.game.players[$routeParams.playerId];
+  .controller('ScoreCtrl', function ($scope, $routeParams, Game) {
+    var playerId = $routeParams.playerId;
+    $scope.game = Game;
+    $scope.player = Game.players[playerId];
 
-    $scope.addToScore = function(points) {
-      $scope.player.score += points;
-    };
-
-    $scope.resetScore = function() {
-      $scope.player.score = 0;
-    };
+    $scope.canon  = function() { Game.canon(playerId); };
+    $scope.yellow = function() { Game.yellow(playerId); };
+    $scope.green  = function() { Game.green(playerId); };
+    $scope.blue   = function() { Game.blue(playerId); };
+    $scope.pink   = function() { Game.pink(playerId); };
+    $scope.black  = function() { Game.black(playerId); };
+    $scope.brown  = function() { Game.brown(playerId); };
+    $scope.foul   = function() { Game.foul(playerId); };
 
   });
