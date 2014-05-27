@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('snookerApp')
+angular.module('app')
   .controller('GameCtrl', function ($scope, $location, Game) {
 
     $scope.scorePlayer = function(idx) {

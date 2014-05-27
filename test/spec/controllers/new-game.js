@@ -3,7 +3,7 @@
 describe('Controller: NewGameCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('snookerApp'));
+  beforeEach(module('app'));
 
   var NewGameCtrl,
     scope;

@@ -18,6 +18,14 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    ngtemplates:  {
+      app:        {
+        cwd:      '<%= yeoman.app %>',
+        src:      'views/**.html',
+        dest:     '<%= yeoman.dist %>/scripts/templates.js'
+      }
+    },
+
     // Will deploy the dist folder to GitHub
     'gh-pages': {
       options: {
@@ -429,7 +437,8 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'rev',
+    'ngtemplates',
+    // 'rev',
     'usemin',
     'htmlmin'
   ]);

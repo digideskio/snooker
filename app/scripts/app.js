@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('snookerApp', [
+  .module('app', [
     'ngCookies',
     'ngResource',
     'ngSanitize',

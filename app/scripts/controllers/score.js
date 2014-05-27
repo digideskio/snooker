@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('snookerApp')
+angular.module('app')
   .controller('ScoreCtrl', function ($scope, $routeParams, Game) {
     var playerId = $routeParams.playerId;
     $scope.game = Game;

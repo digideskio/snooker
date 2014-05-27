@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('snookerApp')
+angular.module('app')
   .factory('Game', function () {
 
     var loadedGame = JSON.parse(localStorage.getItem('snookerGame'));
