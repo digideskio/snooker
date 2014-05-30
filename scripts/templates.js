@@ -85,7 +85,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </thead>\n" +
     "    <tbody>\n" +
     "      <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
-    "      <tr ng-repeat=\"player in players\">\n" +
+    "      <tr ng-repeat=\"player in players\" class=\"animation\">\n" +
     "        <td>{{player.name}}</td>\n" +
     "        <td class=\"text-center\">{{player.target}}</td>\n" +
     "        <td>\n" +
