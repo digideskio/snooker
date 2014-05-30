@@ -2,12 +2,17 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('views/game.html',
-    "<p class=\"lead\">Tap a player to score</p>\n" +
     "\n" +
     "<table id=\"scoreboard\" class=\"table top-buffer-lg\">\n" +
+    "  <thead>\n" +
+    "    <tr>\n" +
+    "      <th> <p class=\"lead\">Tap a player to score</p> </th>\n" +
+    "      <th class=\"text-right\"> </th>\n" +
+    "    </tr>\n" +
+    "  </thead>\n" +
     "  <tbody>\n" +
-    "    <tr ng-hide=\"game.players.length\"><td><small>...No players yet</small></td></tr>\n" +
-    "    <tr ng-click=\"scorePlayer($index)\" ng-repeat=\"player in game.players\">\n" +
+    "    <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
+    "    <tr ng-click=\"scorePlayer($index)\" ng-repeat=\"player in players\" ng-class=\"{active: $index==currentPlayerId}\">\n" +
     "      <td>{{player.name}}</td>\n" +
     "      <td class=\"text-center\">\n" +
     "        {{player.score}}\n" +
@@ -52,7 +57,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "  <div class=\"row\">\n" +
     "    <div class=\"col-xs-12\">\n" +
     "      <label for=\"playerName\">Player Name</label>\n" +
-    "      <input required ng-model=\"playerName\" placeholder=\"Player Name\" class=\"form-control\" id=\"playerName\">\n" +
+    "      <input required autofocus ng-model=\"playerName\" placeholder=\"Player Name\" class=\"form-control\" id=\"playerName\">\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
@@ -71,7 +76,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "      <tr>\n" +
     "        <th>Player</th>\n" +
     "        <th class=\"text-center\">Target Score</th>\n" +
-    "        <th></th>\n" +
+    "        <th class=\"text-right\">\n" +
+    "          <a ng-click=\"shufflePlayers()\">\n" +
+    "            <span class=\"glyphicon glyphicon-random\"></span>\n" +
+    "          </a>\n" +
+    "        </th>\n" +
     "      </tr>\n" +
     "    </thead>\n" +
     "    <tbody>\n" +
@@ -88,7 +97,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "  <div class=\"row top-buffer\">\n" +
     "    <div class=\"col-xs-12\">\n" +
-    "      <a href=\"#/game\" ng-disabled=\"!players.length\" class=\"no-label btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
+    "      <button ng-click=\"startGame()\" ng-disabled=\"!players.length\" class=\"no-label btn btn-primary btn-block btn-lg\">Start Game</button>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
@@ -228,7 +237,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "<div class=\"row top-buffer\">\n" +
     "  <div class=\"col-xs-12\">\n" +
-    "    <a href=\"#/game\" class=\"no-label btn btn-primary btn-block btn-lg\">Next Player</a>\n" +
+    "    <a href=\"#/game/score/{{nextPlayerId}}\" class=\"no-label btn btn-primary btn-block btn-lg\">Next Player</a>\n" +
     "  </div>\n" +
     "</div>\n" +
     "\n" +
