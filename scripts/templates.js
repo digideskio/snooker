@@ -31,11 +31,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('views/home.html',
-    "<!-- Image from: https://weheartit.com/entry/81283937 -->\n" +
-    "<img src=\"images/poo.png\" class=\"img-responsive center\" alt=\"Poo!\">\n" +
-    "<p class=\"text-center lead\">\n" +
-    "  <em>...I hate this game</em>\n" +
-    "</p>\n" +
+    "<div class=\"hero\">\n" +
+    "  <!-- Image from: https://weheartit.com/entry/81283937 -->\n" +
+    "  <img src=\"images/poo.png\" class=\"img-responsive center\" alt=\"Poo!\">\n" +
+    "  <p class=\"text-center lead\">\n" +
+    "    <em>...I hate this game</em>\n" +
+    "  </p>\n" +
+    "</div>\n" +
     "\n" +
     "<div class=\"row top-buffer\">\n" +
     "  <div class=\"col-xs-12\">\n" +
