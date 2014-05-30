@@ -6,6 +6,7 @@ angular.module('app')
     var loadedGame = JSON.parse(localStorage.getItem('snookerGame'));
     var game = {
       players: loadedGame ? loadedGame.players : [],
+      currentPlayerId: 0,
 
       addPlayer: function(name, target) {
         this.players.push({name: name, target: target, score: 0});
@@ -17,7 +18,16 @@ angular.module('app')
         this.persist();
       },
 
-      // TODO: These should probably be on the player object
+      setCurrentPlayerId: function(playerId) {
+        this.currentPlayerId = playerId;
+      },
+
+      getNextPlayerId: function() {
+        var nextPlayerId = this.currentPlayerId + 1;
+        return (nextPlayerId < this.players.length) ? nextPlayerId : 0;
+      },
+
+      // TODO: These could probably be on the player object?
       canon:  function(idx) { this.addScoreToPlayer(2, idx); },
       yellow: function(idx) { this.addScoreToPlayer(2, idx); },
       green:  function(idx) { this.addScoreToPlayer(3, idx); },
