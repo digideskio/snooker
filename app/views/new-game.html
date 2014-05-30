@@ -22,7 +22,11 @@
       <tr>
         <th>Player</th>
         <th class="text-center">Target Score</th>
-        <th></th>
+        <th class="text-right">
+          <a ng-click="shufflePlayers()">
+            <span class="glyphicon glyphicon-random"></span>
+          </a>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -39,7 +43,7 @@
 
   <div class="row top-buffer">
     <div class="col-xs-12">
-      <a href="#/game" ng-disabled="!players.length" class="no-label btn btn-primary btn-block btn-lg">Start Game</a>
+      <button ng-click="startGame()" ng-disabled="!players.length" class="no-label btn btn-primary btn-block btn-lg">Start Game</button>
     </div>
   </div>
 

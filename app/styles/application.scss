@@ -54,6 +54,7 @@ header {
   color: slategrey;
   small { font-size: 50%; }
   td { vertical-align: bottom; }
+  tr.active { font-weight: bold; }
 }
 
 .btn-round {

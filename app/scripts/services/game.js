@@ -6,7 +6,7 @@ angular.module('app')
     var loadedGame = JSON.parse(localStorage.getItem('snookerGame'));
     var game = {
       players: loadedGame ? loadedGame.players : [],
-      currentPlayerId: 0,
+      currentPlayerId: loadedGame ? loadedGame.currentPlayerId : 0,
 
       addPlayer: function(name, target) {
         this.players.push({name: name, target: target, score: 0});
@@ -20,11 +20,22 @@ angular.module('app')
 
       setCurrentPlayerId: function(playerId) {
         this.currentPlayerId = playerId;
+        this.persist();
       },
 
       getNextPlayerId: function() {
         var nextPlayerId = this.currentPlayerId + 1;
         return (nextPlayerId < this.players.length) ? nextPlayerId : 0;
+      },
+
+      shufflePlayers: function() {
+        for (var i = this.players.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = this.players[i];
+          this.players[i] = this.players[j];
+          this.players[j] = temp;
+        }
+        this.persist();
       },
 
       // TODO: These could probably be on the player object?
@@ -47,10 +58,18 @@ angular.module('app')
         this.persist();
       },
 
+      reset: function() {
+        this.currentPlayerId = 0;
+        angular.forEach(this.players, function(player) {
+          player.score = 0;
+        });
+      },
+
       persist: function() {
         localStorage.setItem('snookerGame', angular.toJson({
           updatedAt: new Date().getTime(),
           players: this.players,
+          currentPlayerId: this.currentPlayerId,
         }));
       }
     };
