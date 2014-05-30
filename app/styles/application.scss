@@ -18,6 +18,9 @@ $icon-font-path: "/fonts/";
 }
 
 header {
+  h1 { margin: 0px; }
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin-bottom: 30px;
   text-align: center;
   a { color: slategrey; }
@@ -50,6 +53,7 @@ header {
 
 
 #scoreboard {
+  margin-top: 0px;
   font-size: 2em;
   color: slategrey;
   small { font-size: 50%; }
