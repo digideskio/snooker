@@ -17,7 +17,14 @@ $icon-font-path: "/fonts/";
   padding-bottom: 15px;
 }
 
-@import url(http://fonts.googleapis.com/css?family=Pacifico);
+// Serving this locally to improve pagespeed, original font available here:
+//   https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Pacifico
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(/fonts/pacifico.ttf) format('truetype');
+}
 header {
   h1 {
     margin: 0px;
