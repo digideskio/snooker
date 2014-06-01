@@ -1,56 +1,62 @@
 <form novalidate name="newGame" ng-controller="NewGameCtrl">
 
   <div class="row">
-    <div class="col-xs-12">
-      <label for="playerName">Player Name</label>
-      <input required autofocus ng-model="playerName" placeholder="Player Name" class="form-control" id="playerName">
-    </div>
-  </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-xs-12">
+          <label for="playerName">Player Name</label>
+          <input required autofocus ng-model="playerName" placeholder="Player Name" class="form-control" id="playerName">
+        </div>
+      </div>
 
-  <div class="row top-buffer">
-    <div class="col-xs-6">
-      <label for="targetScore">Target Score</label>
-      <input required ng-model="targetScore" type="number" value="31" step="10" min="31" class="form-control" id="targetScore">
+      <div class="row top-buffer">
+        <div class="col-xs-6">
+          <label for="targetScore">Target Score</label>
+          <input required ng-model="targetScore" type="number" value="31" step="10" min="31" class="form-control" id="targetScore">
+        </div>
+        <div class="col-xs-6">
+          <button ng-click="addPlayer()" ng-disabled="newGame.$invalid" class="no-label btn btn-block">Add player</button>
+        </div>
+      </div>
     </div>
-    <div class="col-xs-6">
-      <button ng-click="addPlayer()" ng-disabled="newGame.$invalid" class="no-label btn btn-block">Add player</button>
-    </div>
-  </div>
 
-  <table class="table top-buffer-lg">
-    <thead>
-      <tr>
-        <th>Player</th>
-        <th class="text-center">Target Score</th>
-        <th class="text-right">
-          <a ng-click="shufflePlayers()">
-            <span class="glyphicon glyphicon-random"></span>
-          </a>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-hide="players.length"><td><small>...No players yet</small></td></tr>
-      <tr ng-repeat="player in players" class="animation">
-        <td>{{player.name}}</td>
-        <td class="text-center">{{player.target}}</td>
-        <td>
-          <button ng-click="removePlayer($index)" type="button" class="close pull-right">&times;</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="col-md-6">
+      <table class="table top-buffer-lg">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th class="text-center">Target Score</th>
+            <th class="text-right">
+              <a ng-click="shufflePlayers()">
+                <span class="glyphicon glyphicon-random"></span>
+              </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-hide="players.length"><td><small>...No players yet</small></td></tr>
+          <tr ng-repeat="player in players" class="animation">
+            <td>{{player.name}}</td>
+            <td class="text-center">{{player.target}}</td>
+            <td>
+              <button ng-click="removePlayer($index)" type="button" class="close pull-right">&times;</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-  <div class="row top-buffer">
-    <div class="col-xs-12">
-      <a href="#/game" ng-click="resetGame()" ng-disabled="!players.length" class="visible-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
-      <a href="#/game/score/0" ng-click="resetGame()" ng-disabled="!players.length" class="hidden-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
-    </div>
-  </div>
+      <div class="row top-buffer">
+        <div class="col-xs-12">
+          <a href="#/game" ng-click="resetGame()" ng-disabled="!players.length" class="visible-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
+          <a href="#/game/score/0" ng-click="resetGame()" ng-disabled="!players.length" class="hidden-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
+        </div>
+      </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <a href="#/" class="no-label btn btn-block btn-lg">Back</a>
+      <div class="row">
+        <div class="col-xs-12">
+          <a href="#/" class="no-label btn btn-block btn-lg">Back</a>
+        </div>
+      </div>
     </div>
   </div>
 
