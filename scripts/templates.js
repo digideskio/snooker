@@ -2,25 +2,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('views/game.html',
-    "\n" +
-    "<table id=\"scoreboard\" class=\"table top-buffer-lg\">\n" +
-    "  <thead>\n" +
-    "    <tr>\n" +
-    "      <th> <p class=\"lead\">Tap a player to score</p> </th>\n" +
-    "      <th class=\"text-right\"> </th>\n" +
-    "    </tr>\n" +
-    "  </thead>\n" +
-    "  <tbody>\n" +
-    "    <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
-    "    <tr ng-click=\"scorePlayer($index)\" ng-repeat=\"player in players\" ng-class=\"{active: $index==currentPlayerId}\">\n" +
-    "      <td>{{player.name}}</td>\n" +
-    "      <td class=\"text-center\">\n" +
-    "        {{player.score}}\n" +
-    "        <small>/{{player.target}}</small>\n" +
-    "      </td>\n" +
-    "    </tr>\n" +
-    "  </tbody>\n" +
-    "</table>\n" +
+    "<scoreboard lead=\"'Tap a player to score'\"></scoreboard> \n" +
     "\n" +
     "<div class=\"row top-buffer\">\n" +
     "  <div class=\"col-xs-12\">\n" +
@@ -31,24 +13,28 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('views/home.html',
-    "<div class=\"hero\">\n" +
-    "  <!-- Image from: https://weheartit.com/entry/81283937 -->\n" +
-    "  <img src=\"images/poo.png\" class=\"img-responsive center\" alt=\"Poo!\">\n" +
-    "  <p class=\"text-center lead\">\n" +
-    "    <em>...I hate this game</em>\n" +
-    "  </p>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row top-buffer\">\n" +
-    "  <div class=\"col-xs-12\">\n" +
-    "    <a href=\"#/new\" class=\"no-label btn btn-success btn-block btn-lg\">New Game</a>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "\n" +
     "<div class=\"row\">\n" +
-    "  <div class=\"col-xs-12\">\n" +
-    "    <a href=\"#/rules\" class=\"no-label btn btn-success btn-block btn-lg\">Rules</a>\n" +
+    "\n" +
+    "  <div class=\"col-md-6\">\n" +
+    "    <div class=\"hero\">\n" +
+    "      <!-- Image from: https://weheartit.com/entry/81283937 -->\n" +
+    "      <img src=\"images/poo.png\" class=\"img-responsive center\" alt=\"Poo!\">\n" +
+    "      <p class=\"text-center lead\">\n" +
+    "        <em>...I hate this game</em>\n" +
+    "      </p>\n" +
+    "    </div>\n" +
     "  </div>\n" +
+    "\n" +
+    "  <div class=\"visible-xs visible-sm main-menu col-md-6\">\n" +
+    "    <a href=\"#/new\" class=\"no-label btn btn-success btn-block btn-lg\">New Game</a>\n" +
+    "    <a href=\"#/rules\" class=\"no-label btn btn-default btn-block btn-lg\">Rules</a>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <div class=\"hidden-xs hidden-sm main-menu col-md-6\">\n" +
+    "    <a href=\"#/new\" class=\"no-label btn btn-success btn-square btn-lg\">New Game</a>\n" +
+    "    <a href=\"#/rules\" class=\"no-label btn btn-default btn-square btn-lg\">Rules</a>\n" +
+    "  </div>\n" +
+    "\n" +
     "</div>\n"
   );
 
@@ -57,55 +43,62 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<form novalidate name=\"newGame\" ng-controller=\"NewGameCtrl\">\n" +
     "\n" +
     "  <div class=\"row\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "      <label for=\"playerName\">Player Name</label>\n" +
-    "      <input required autofocus ng-model=\"playerName\" placeholder=\"Player Name\" class=\"form-control\" id=\"playerName\">\n" +
-    "    </div>\n" +
-    "  </div>\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "          <label for=\"playerName\">Player Name</label>\n" +
+    "          <input required autofocus ng-model=\"playerName\" placeholder=\"Player Name\" class=\"form-control\" id=\"playerName\">\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "\n" +
-    "  <div class=\"row top-buffer\">\n" +
-    "    <div class=\"col-xs-6\">\n" +
-    "      <label for=\"targetScore\">Target Score</label>\n" +
-    "      <input required ng-model=\"targetScore\" type=\"number\" value=\"31\" step=\"10\" min=\"31\" class=\"form-control\" id=\"targetScore\">\n" +
+    "      <div class=\"row top-buffer\">\n" +
+    "        <div class=\"col-xs-6\">\n" +
+    "          <label for=\"targetScore\">Target Score</label>\n" +
+    "          <input required ng-model=\"targetScore\" type=\"number\" value=\"31\" step=\"10\" min=\"31\" class=\"form-control\" id=\"targetScore\">\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-6\">\n" +
+    "          <button ng-click=\"addPlayer()\" ng-disabled=\"newGame.$invalid\" class=\"no-label btn btn-block\">Add player</button>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "    </div>\n" +
-    "    <div class=\"col-xs-6\">\n" +
-    "      <button ng-click=\"addPlayer()\" ng-disabled=\"newGame.$invalid\" class=\"no-label btn btn-block\">Add player</button>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
     "\n" +
-    "  <table class=\"table top-buffer-lg\">\n" +
-    "    <thead>\n" +
-    "      <tr>\n" +
-    "        <th>Player</th>\n" +
-    "        <th class=\"text-center\">Target Score</th>\n" +
-    "        <th class=\"text-right\">\n" +
-    "          <a ng-click=\"shufflePlayers()\">\n" +
-    "            <span class=\"glyphicon glyphicon-random\"></span>\n" +
-    "          </a>\n" +
-    "        </th>\n" +
-    "      </tr>\n" +
-    "    </thead>\n" +
-    "    <tbody>\n" +
-    "      <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
-    "      <tr ng-repeat=\"player in players\" class=\"animation\">\n" +
-    "        <td>{{player.name}}</td>\n" +
-    "        <td class=\"text-center\">{{player.target}}</td>\n" +
-    "        <td>\n" +
-    "          <button ng-click=\"removePlayer($index)\" type=\"button\" class=\"close pull-right\">&times;</button>\n" +
-    "        </td>\n" +
-    "      </tr>\n" +
-    "    </tbody>\n" +
-    "  </table>\n" +
+    "    <div class=\"col-md-6\">\n" +
+    "      <table class=\"table top-buffer-lg\">\n" +
+    "        <thead>\n" +
+    "          <tr>\n" +
+    "            <th>Player</th>\n" +
+    "            <th class=\"text-center\">Target Score</th>\n" +
+    "            <th class=\"text-right\">\n" +
+    "              <a ng-click=\"shufflePlayers()\">\n" +
+    "                <span class=\"glyphicon glyphicon-random\"></span>\n" +
+    "              </a>\n" +
+    "            </th>\n" +
+    "          </tr>\n" +
+    "        </thead>\n" +
+    "        <tbody>\n" +
+    "          <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
+    "          <tr ng-repeat=\"player in players\" class=\"animation\">\n" +
+    "            <td>{{player.name}}</td>\n" +
+    "            <td class=\"text-center\">{{player.target}}</td>\n" +
+    "            <td>\n" +
+    "              <button ng-click=\"removePlayer($index)\" type=\"button\" class=\"close pull-right\">&times;</button>\n" +
+    "            </td>\n" +
+    "          </tr>\n" +
+    "        </tbody>\n" +
+    "      </table>\n" +
     "\n" +
-    "  <div class=\"row top-buffer\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "      <button ng-click=\"startGame()\" ng-disabled=\"!players.length\" class=\"no-label btn btn-primary btn-block btn-lg\">Start Game</button>\n" +
-    "    </div>\n" +
-    "  </div>\n" +
+    "      <div class=\"row top-buffer\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "          <a href=\"#/game\" ng-click=\"resetGame()\" ng-disabled=\"!players.length\" class=\"visible-xs no-label btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
+    "          <a href=\"#/game/score/0\" ng-click=\"resetGame()\" ng-disabled=\"!players.length\" class=\"hidden-xs no-label btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "\n" +
-    "  <div class=\"row\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "      <a href=\"#/\" class=\"no-label btn btn-block btn-lg\">Back</a>\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "          <a href=\"#/\" class=\"no-label btn btn-block btn-lg\">Back</a>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
@@ -193,59 +186,67 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('views/score.html',
-    "<h1 class=\"no-top-buffer\">{{player.name}}: {{player.score}}/{{player.target}}</h1>\n" +
-    "\n" +
-    "<div class=\"row top-buffer-lg\">\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"canon()\" class=\"canon btn btn-large btn-default btn-round\">\n" +
-    "      <!--\n" +
-    "        Downloaded from: https://www.iconfinder.com/icons/174695/cannon_icon#size=128\n" +
-    "        Created by: Visual Pharm - http://icons8.com\n" +
-    "      -->\n" +
-    "      <img src=\"images/cannon-icon.png\" class=\"img-responsive\" alt=\"Canon (2)\"></img>\n" +
-    "    </button>\n" +
-    "  </div>\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"yellow()\" class=\"yellow btn btn-large btn-default btn-round\">2</button>\n" +
-    "  </div>\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"green()\" class=\"green btn btn-large btn-default btn-round\">3</button>\n" +
-    "  </div>\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"blue()\" class=\"blue btn btn-large btn-default btn-round\">5</button>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "<div class=\"row top-buffer\">\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"pink()\" class=\"pink btn btn-large btn-default btn-round\">6</button>\n" +
-    "  </div>\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"black()\" class=\"black btn btn-large btn-default btn-round\">7</button>\n" +
-    "  </div>\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"brown()\" class=\"poo btn btn-large btn-default btn-round\">\n" +
-    "      <!--\n" +
-    "        Icon made by Freepik from: http://www.flaticon.com/free-icon/pet-poop-shape_42104\n" +
-    "      -->\n" +
-    "      <img src=\"images/poo-icon.png\" class=\"img-responsive\" alt=\"Poo (0)\"></img>\n" +
-    "    </button>\n" +
-    "  </div>\n" +
-    "  <div class=\"col-xs-3\">\n" +
-    "    <button ng-click=\"foul()\" class=\"foul btn btn-large btn-default btn-round\">\n" +
-    "      <span class=\"glyphicon glyphicon-remove\"></span>\n" +
-    "    </button>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row top-buffer\">\n" +
-    "  <div class=\"col-xs-12\">\n" +
-    "    <a href=\"#/game/score/{{nextPlayerId}}\" class=\"no-label btn btn-primary btn-block btn-lg\">Next Player</a>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "\n" +
     "<div class=\"row\">\n" +
-    "  <div class=\"col-xs-12\">\n" +
-    "    <a href=\"#/game\" class=\"no-label btn btn-block btn-lg\">Back</a>\n" +
+    "  <div class=\"hidden-xs col-sm-4\">\n" +
+    "    <scoreboard></scoreboard>\n" +
+    "  </div>\n" +
+    "  <div class=\"score-panel col-sm-8\">\n" +
+    "    <h1 class=\"no-top-buffer\">{{player.name}}: {{player.score}}/{{player.target}}</h1>\n" +
+    "\n" +
+    "    <div class=\"row top-buffer-lg\">\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"canon()\" class=\"canon btn btn-large btn-default btn-round\">\n" +
+    "          <!--\n" +
+    "            Downloaded from: https://www.iconfinder.com/icons/174695/cannon_icon#size=128\n" +
+    "            Created by: Visual Pharm - http://icons8.com\n" +
+    "          -->\n" +
+    "          <img src=\"images/cannon-icon.png\" class=\"img-responsive\" alt=\"Canon (2)\"></img>\n" +
+    "        </button>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"yellow()\" class=\"yellow btn btn-large btn-default btn-round\">2</button>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"green()\" class=\"green btn btn-large btn-default btn-round\">3</button>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"blue()\" class=\"blue btn btn-large btn-default btn-round\">5</button>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"row top-buffer\">\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"pink()\" class=\"pink btn btn-large btn-default btn-round\">6</button>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"black()\" class=\"black btn btn-large btn-default btn-round\">7</button>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"brown()\" class=\"poo btn btn-large btn-default btn-round\">\n" +
+    "          <!--\n" +
+    "            Icon made by Freepik from: http://www.flaticon.com/free-icon/pet-poop-shape_42104\n" +
+    "          -->\n" +
+    "          <img src=\"images/poo-icon.png\" class=\"img-responsive\" alt=\"Poo (0)\"></img>\n" +
+    "        </button>\n" +
+    "      </div>\n" +
+    "      <div class=\"col-xs-3\">\n" +
+    "        <button ng-click=\"foul()\" class=\"foul btn btn-large btn-default btn-round\">\n" +
+    "          <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "        </button>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"row top-buffer\">\n" +
+    "      <div class=\"col-xs-12\">\n" +
+    "        <a href=\"#/game/score/{{nextPlayerId}}\" class=\"no-label btn btn-primary btn-block btn-lg\">Next Player</a>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "      <div class=\"col-xs-12\">\n" +
+    "        <a href=\"#/game\" class=\"visible-xs no-label btn btn-block btn-lg\">Back</a>\n" +
+    "        <a href=\"#/new\" class=\"hidden-xs no-label btn btn-block btn-lg\">End Game</a>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "</div>\n"
   );
