@@ -1,6 +1,28 @@
 angular.module('app').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('views/_scoreboard.html',
+    "<table class=\"scoreboard table top-buffer-lg\">\n" +
+    "  <thead>\n" +
+    "    <tr ng-show=\"leadText\">\n" +
+    "      <th><p class=\"lead\">{{leadText}}</p></th>\n" +
+    "      <th class=\"text-right\"> </th>\n" +
+    "    </tr>\n" +
+    "  </thead>\n" +
+    "  <tbody>\n" +
+    "    <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
+    "    <tr ng-click=\"scorePlayer($index)\" ng-repeat=\"player in players\" ng-class=\"{active: $index==currentPlayerId}\">\n" +
+    "      <td>{{player.name}}</td>\n" +
+    "      <td class=\"text-center\">\n" +
+    "        {{player.score}}\n" +
+    "        <small>/{{player.target}}</small>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
+  );
+
+
   $templateCache.put('views/game.html',
     "<scoreboard lead=\"'Tap a player to score'\"></scoreboard> \n" +
     "\n" +
