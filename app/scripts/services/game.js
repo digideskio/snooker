@@ -50,6 +50,9 @@ angular.module('app')
 
       addScoreToPlayer: function(points, playerId) {
         this.players[playerId].score += points;
+        if (this.players[playerId].score > this.players[playerId].target) {
+          this.resetPlayerScore(playerId);
+        }
         this.persist();
       },
 
