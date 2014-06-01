@@ -21,8 +21,7 @@ angular
         controller: 'NewGameCtrl'
       })
       .when('/game', {
-        templateUrl: 'views/game.html',
-        controller: 'GameCtrl'
+        templateUrl: 'views/game.html'
       })
       .when('/game/score/:playerId', {
         templateUrl: 'views/score.html',

@@ -1,22 +1,4 @@
-
-<table id="scoreboard" class="table top-buffer-lg">
-  <thead>
-    <tr>
-      <th> <p class="lead">Tap a player to score</p> </th>
-      <th class="text-right"> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-hide="players.length"><td><small>...No players yet</small></td></tr>
-    <tr ng-click="scorePlayer($index)" ng-repeat="player in players" ng-class="{active: $index==currentPlayerId}">
-      <td>{{player.name}}</td>
-      <td class="text-center">
-        {{player.score}}
-        <small>/{{player.target}}</small>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<scoreboard lead="'Tap a player to score'"></scoreboard> 
 
 <div class="row top-buffer">
   <div class="col-xs-12">
