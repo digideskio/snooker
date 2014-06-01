@@ -4,7 +4,7 @@ angular.module('app')
   .directive('scoreboard', function () {
     return {
       restrict: 'E',
-      templateUrl: 'scripts/directives/scoreboard.html',
+      templateUrl: 'views/_scoreboard.html',
       scope: {
         leadText: '=lead'
       },
