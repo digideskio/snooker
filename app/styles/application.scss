@@ -68,13 +68,19 @@ header {
 }
 
 
-#scoreboard {
+.scoreboard {
   margin-top: 0px;
   font-size: 2em;
   color: slategrey;
   small { font-size: 50%; }
   td { vertical-align: bottom; }
   tr.active { font-weight: bold; }
+}
+
+.score-panel {
+  .btn-round {
+    margin: auto;
+  }
 }
 
 .btn-round {

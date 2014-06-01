@@ -17,9 +17,8 @@ angular.module('app')
       Game.shufflePlayers();
     };
 
-    $scope.startGame = function() {
+    $scope.resetGame = function() {
       Game.reset();
-      $location.path('/game');
     };
 
 

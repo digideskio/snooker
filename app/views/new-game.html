@@ -43,7 +43,8 @@
 
   <div class="row top-buffer">
     <div class="col-xs-12">
-      <button ng-click="startGame()" ng-disabled="!players.length" class="no-label btn btn-primary btn-block btn-lg">Start Game</button>
+      <a href="#/game" ng-click="resetGame()" ng-disabled="!players.length" class="visible-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
+      <a href="#/game/score/0" ng-click="resetGame()" ng-disabled="!players.length" class="hidden-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
     </div>
   </div>
 
