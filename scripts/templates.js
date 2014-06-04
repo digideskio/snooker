@@ -127,14 +127,20 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "      <div class=\"row top-buffer\">\n" +
     "        <div class=\"col-xs-12\">\n" +
-    "          <a href=\"#/game\" ng-click=\"resetGame()\" ng-disabled=\"!players.length\" class=\"visible-xs no-label btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
-    "          <a href=\"#/game/score/0\" ng-click=\"resetGame()\" ng-disabled=\"!players.length\" class=\"hidden-xs no-label btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
+    "          <a href=\"#/game\" ng-click=\"resetScores()\" ng-disabled=\"!players.length\" class=\"visible-xs top-buffer btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
+    "          <a href=\"#/game/score/0\" ng-click=\"resetScores()\" ng-disabled=\"!players.length\" class=\"hidden-xs top-buffer btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "\n" +
     "      <div class=\"row\">\n" +
     "        <div class=\"col-xs-12\">\n" +
-    "          <a href=\"#/\" class=\"no-label btn btn-block btn-lg\">Back</a>\n" +
+    "          <button ng-click=\"resetTargets()\" class=\"top-buffer btn btn-block btn-lg btn-default\">Reset</a>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "          <a href=\"#/\" class=\"top-buffer btn btn-block btn-lg\">Back</a>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
