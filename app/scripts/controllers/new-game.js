@@ -6,7 +6,7 @@ angular.module('app')
     $scope.addPlayer = function() {
       Game.addPlayer($scope.playerName, $scope.targetScore);
       $scope.playerName = '';
-      $scope.targetScore = 31;
+      $scope.targetScore = Game.DEFAULT_TARGET;
     };
 
     $scope.removePlayer = function(idx) {
@@ -17,12 +17,16 @@ angular.module('app')
       Game.shufflePlayers();
     };
 
-    $scope.resetGame = function() {
-      Game.reset();
+    $scope.resetScores = function() {
+      Game.resetScores();
+    };
+
+    $scope.resetTargets = function() {
+      Game.resetTargets();
     };
 
 
     $scope.players = Game.players;
     $scope.playerName = '';
-    $scope.targetScore = 31;
+    $scope.targetScore = Game.DEFAULT_TARGET;
   });

@@ -5,6 +5,10 @@ angular.module('app')
 
     var loadedGame = JSON.parse(localStorage.getItem('snookerGame'));
     var game = {
+
+      DEFAULT_TARGET: 31,
+      DEFAULT_INCREMENT: 10,
+
       players: loadedGame ? loadedGame.players : [],
       currentPlayerId: loadedGame ? loadedGame.currentPlayerId : 0,
 
@@ -39,7 +43,7 @@ angular.module('app')
       },
 
       incrementTarget: function(playerId) {
-        this.players[playerId].target += 10;
+        this.players[playerId].target += this.DEFAULT_INCREMENT;
         this.persist();
       },
 
@@ -66,10 +70,18 @@ angular.module('app')
         this.persist();
       },
 
-      reset: function() {
+      resetScores: function() {
         this.currentPlayerId = 0;
         angular.forEach(this.players, function(player) {
           player.score = 0;
+        });
+      },
+
+      resetTargets: function() {
+        var target = this.DEFAULT_TARGET;
+        this.currentPlayerId = 0;
+        angular.forEach(this.players, function(player) {
+          player.target = target;
         });
       },
 

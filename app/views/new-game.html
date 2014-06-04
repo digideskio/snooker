@@ -47,14 +47,20 @@
 
       <div class="row top-buffer">
         <div class="col-xs-12">
-          <a href="#/game" ng-click="resetGame()" ng-disabled="!players.length" class="visible-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
-          <a href="#/game/score/0" ng-click="resetGame()" ng-disabled="!players.length" class="hidden-xs no-label btn btn-primary btn-block btn-lg">Start Game</a>
+          <a href="#/game" ng-click="resetScores()" ng-disabled="!players.length" class="visible-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
+          <a href="#/game/score/0" ng-click="resetScores()" ng-disabled="!players.length" class="hidden-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12">
-          <a href="#/" class="no-label btn btn-block btn-lg">Back</a>
+          <button ng-click="resetTargets()" class="top-buffer btn btn-block btn-lg btn-default">Reset</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <a href="#/" class="top-buffer btn btn-block btn-lg">Back</a>
         </div>
       </div>
     </div>
