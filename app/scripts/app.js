@@ -2,9 +2,6 @@
 
 angular
   .module('app', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
     'ngRoute',
     'ngAnimate'
   ])
