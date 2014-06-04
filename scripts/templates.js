@@ -23,6 +23,22 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('views/_winner-modal.html',
+    "<!-- Modal -->\n" +
+    "<div class=\"modal-header\">\n" +
+    "  <h4 class=\"modal-title text-center\">Congratulations!</h4>\n" +
+    "</div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "  <!-- http://openclipart.org/detail/120343/trophy-by-netalloy -->\n" +
+    "  <img src=\"images/trophy.png\" class=\"img-responsive img-center\" alt=\"Winner!\"></img>\n" +
+    "  <h1 class=\"text-center\">{{winner.name}} wins!</h1>\n" +
+    "</div>\n" +
+    "<div class=\"modal-footer\">\n" +
+    "  <button ng-click=\"ok()\" class=\"btn btn-block btn-lg btn-primary\">Yay!</button>\n" +
+    "</div>\n"
+  );
+
+
   $templateCache.put('views/game.html',
     "<scoreboard lead=\"'Tap a player to score'\"></scoreboard> \n" +
     "\n" +
@@ -259,15 +275,18 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "\n" +
     "    <div class=\"row top-buffer\">\n" +
-    "      <div class=\"col-xs-12\">\n" +
-    "        <a href=\"#/game/score/{{nextPlayerId}}\" class=\"no-label btn btn-primary btn-block btn-lg\">Next Player</a>\n" +
+    "      <div ng-show=\"isWinner()\" class=\"col-xs-12\">\n" +
+    "        <button ng-click=\"declareWinner()\" class=\"top-buffer btn btn-success btn-block btn-lg\">Declare winner!</button>\n" +
+    "      </div>\n" +
+    "      <div ng-hide=\"isWinner()\" class=\"col-xs-12\">\n" +
+    "        <button ng-click=\"goToNextPlayer()\" class=\"top-buffer btn btn-primary btn-block btn-lg\">Next Player</button>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"row\">\n" +
     "      <div class=\"col-xs-12\">\n" +
-    "        <a href=\"#/game\" class=\"visible-xs no-label btn btn-block btn-lg\">Back</a>\n" +
-    "        <a href=\"#/new\" class=\"hidden-xs no-label btn btn-block btn-lg\">End Game</a>\n" +
+    "        <a href=\"#/game\" class=\"visible-xs top-buffer btn btn-block btn-lg\">Back</a>\n" +
+    "        <a href=\"#/new\" class=\"hidden-xs top-buffer btn btn-block btn-lg\">End Game</a>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
