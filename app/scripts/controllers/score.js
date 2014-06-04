@@ -1,11 +1,35 @@
 'use strict';
 
 angular.module('app')
-  .controller('ScoreCtrl', function ($scope, $routeParams, Game) {
+  .controller('ScoreCtrl', function ($scope, $routeParams, $modal, $location, Game) {
     var playerId = parseInt($routeParams.playerId);
+    var player = Game.players[playerId];
+    $scope.player = player;
+
     Game.setCurrentPlayerId(playerId);
-    $scope.player = Game.players[playerId];
-    $scope.nextPlayerId = Game.getNextPlayerId();
+
+
+    $scope.isWinner = function() {
+      return player.score === player.target;
+    };
+
+    $scope.goToNextPlayer = function() {
+      $location.path('/game/score/' + Game.getNextPlayerId());
+    };
+
+    $scope.declareWinner = function() {
+      Game.incrementTarget(playerId);
+      $location.path('/new');
+      $modal.open({
+        templateUrl: 'views/_winner-modal.html',
+        controller: 'WinnerModalCtrl',
+        resolve: {
+          winner: function() {
+            return $scope.player;
+          }
+        }
+      });
+    };
 
     $scope.canon  = function() { Game.canon(playerId); };
     $scope.yellow = function() { Game.yellow(playerId); };
@@ -15,4 +39,5 @@ angular.module('app')
     $scope.black  = function() { Game.black(playerId); };
     $scope.brown  = function() { Game.brown(playerId); };
     $scope.foul   = function() { Game.foul(playerId); };
+
   });

@@ -48,15 +48,18 @@
     </div>
 
     <div class="row top-buffer">
-      <div class="col-xs-12">
-        <a href="#/game/score/{{nextPlayerId}}" class="no-label btn btn-primary btn-block btn-lg">Next Player</a>
+      <div ng-show="isWinner()" class="col-xs-12">
+        <button ng-click="declareWinner()" class="top-buffer btn btn-success btn-block btn-lg">Declare winner!</button>
+      </div>
+      <div ng-hide="isWinner()" class="col-xs-12">
+        <button ng-click="goToNextPlayer()" class="top-buffer btn btn-primary btn-block btn-lg">Next Player</button>
       </div>
     </div>
 
     <div class="row">
       <div class="col-xs-12">
-        <a href="#/game" class="visible-xs no-label btn btn-block btn-lg">Back</a>
-        <a href="#/new" class="hidden-xs no-label btn btn-block btn-lg">End Game</a>
+        <a href="#/game" class="visible-xs top-buffer btn btn-block btn-lg">Back</a>
+        <a href="#/new" class="hidden-xs top-buffer btn btn-block btn-lg">End Game</a>
       </div>
     </div>
   </div>

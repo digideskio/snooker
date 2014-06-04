@@ -38,6 +38,11 @@ angular.module('app')
         this.persist();
       },
 
+      incrementTarget: function(playerId) {
+        this.players[playerId].target += 10;
+        this.persist();
+      },
+
       // TODO: These could probably be on the player object?
       canon:  function(idx) { this.addScoreToPlayer(2, idx); },
       yellow: function(idx) { this.addScoreToPlayer(2, idx); },
