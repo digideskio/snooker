@@ -30,7 +30,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "</div>\n" +
     "<div class=\"modal-body\">\n" +
     "  <!-- http://openclipart.org/detail/120343/trophy-by-netalloy -->\n" +
-    "  <img src=\"images/trophy.png\" class=\"img-responsive img-center\" alt=\"Winner!\"></img>\n" +
+    "  <img src=\"images/trophy.png\" class=\"img-responsive img-center animate-bounce\" alt=\"Winner!\"></img>\n" +
     "  <h1 class=\"text-center\">{{winner.name}} wins!</h1>\n" +
     "</div>\n" +
     "<div class=\"modal-footer\">\n" +
@@ -101,7 +101,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-md-6\">\n" +
-    "      <table class=\"table top-buffer-lg\">\n" +
+    "      <table class=\"game-setup table top-buffer-lg\">\n" +
     "        <thead>\n" +
     "          <tr>\n" +
     "            <th>Player</th>\n" +
@@ -116,10 +116,15 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <tbody>\n" +
     "          <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
     "          <tr ng-repeat=\"player in players\" class=\"animation\">\n" +
-    "            <td>{{player.name}}</td>\n" +
-    "            <td class=\"text-center\">{{player.target}}</td>\n" +
+    "            <td ng-click=\"foo($index)\">{{player.name}}</td>\n" +
+    "            <td ng-click=\"foo($index)\" class=\"text-center\">{{player.target}}</td>\n" +
     "            <td>\n" +
-    "              <button ng-click=\"removePlayer($index)\" type=\"button\" class=\"close pull-right\">&times;</button>\n" +
+    "              <button ng-click=\"removePlayer($index)\" type=\"button\" class=\"close\">\n" +
+    "                <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "              </button>\n" +
+    "              <button ng-click=\"editPlayer($index)\" type=\"button\" class=\"close\">\n" +
+    "                <span class=\"glyphicon glyphicon-pencil\"></span>\n" +
+    "              </button>\n" +
     "            </td>\n" +
     "          </tr>\n" +
     "        </tbody>\n" +
