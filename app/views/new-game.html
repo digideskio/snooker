@@ -21,7 +21,7 @@
     </div>
 
     <div class="col-md-6">
-      <table class="table top-buffer-lg">
+      <table class="game-setup table top-buffer-lg">
         <thead>
           <tr>
             <th>Player</th>
@@ -36,10 +36,15 @@
         <tbody>
           <tr ng-hide="players.length"><td><small>...No players yet</small></td></tr>
           <tr ng-repeat="player in players" class="animation">
-            <td>{{player.name}}</td>
-            <td class="text-center">{{player.target}}</td>
+            <td ng-click="foo($index)">{{player.name}}</td>
+            <td ng-click="foo($index)" class="text-center">{{player.target}}</td>
             <td>
-              <button ng-click="removePlayer($index)" type="button" class="close pull-right">&times;</button>
+              <button ng-click="removePlayer($index)" type="button" class="close">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+              <button ng-click="editPlayer($index)" type="button" class="close">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </button>
             </td>
           </tr>
         </tbody>

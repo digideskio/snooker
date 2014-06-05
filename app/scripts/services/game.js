@@ -18,8 +18,9 @@ angular.module('app')
       },
 
       removePlayer: function(idx) {
-        this.players.splice(idx, 1);
+        var player = this.players.splice(idx, 1)[0];
         this.persist();
+        return player;
       },
 
       setCurrentPlayerId: function(playerId) {

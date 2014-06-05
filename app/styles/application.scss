@@ -72,6 +72,13 @@ header {
 }
 
 
+.game-setup {
+  .close {
+    font-size: 15px;
+    margin-left: 10px;
+  }
+}
+
 .scoreboard {
   margin-top: 0px;
   font-size: 2em;
@@ -86,6 +93,8 @@ header {
     margin: auto;
   }
 }
+
+
 
 .btn-square {
   width: 100%;
