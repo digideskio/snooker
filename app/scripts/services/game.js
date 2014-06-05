@@ -75,6 +75,7 @@ angular.module('app')
         angular.forEach(this.players, function(player) {
           player.score = 0;
         });
+        this.persist();
       },
 
       resetTargets: function() {
@@ -83,6 +84,7 @@ angular.module('app')
         angular.forEach(this.players, function(player) {
           player.target = target;
         });
+        this.persist();
       },
 
       persist: function() {
