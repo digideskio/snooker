@@ -34,6 +34,41 @@ module.exports = function (grunt) {
       src: ['**']
     },
 
+    manifest: {
+      generate: {
+        options: {
+          basePath: 'dist',
+          preferOnline: true,
+          timestamp: true,
+          exclude: ['manifest.appcache', 'CNAME'],
+        },
+        src: [
+          'fonts/*',
+          'images/*',
+          'scripts/*',
+          'styles/*',
+          '404.html',
+          'favicon.ico',
+          'index.html',
+          'robots.txt'
+        ],
+        dest: 'dist/manifest.appcache'
+      }
+    },
+
+    'regex-replace': {
+      dist: {
+        src: ['<%= yeoman.dist %>/index.html'],
+        actions: [
+          {
+            name: 'inject appcache manifest',
+            search: '<html',
+            replace: '<html manifest="manifest.appcache"'
+          }
+        ]
+      }
+    },
+
     // Project settings
     yeoman: {
       // configurable paths
@@ -441,7 +476,9 @@ module.exports = function (grunt) {
     'ngtemplates',
     // 'rev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'manifest',
+    'regex-replace'
   ]);
 
   grunt.registerTask('default', [
