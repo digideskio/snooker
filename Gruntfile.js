@@ -47,7 +47,6 @@ module.exports = function (grunt) {
           'images/*',
           'scripts/*',
           'styles/*',
-          '404.html',
           'favicon.ico',
           'index.html',
           'robots.txt'
