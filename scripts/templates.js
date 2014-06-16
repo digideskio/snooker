@@ -167,7 +167,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "<p>Set up the table like snooker, but instead of having a triangle of red balls, just have the one and place it in the empty gap between the pink and blue balls.</p>\n" +
     "\n" +
-    "<p>Anytime a ball goes into a pocket, it must return to its initial position. If this position is occupied, it may move up to the next available position. Anytime the white ball goes into a pocket, it must return to the \"D\".</p>\n" +
+    "<p>Anytime a ball goes into a pocket, it must return to its initial position. If this position is occupied, it may move up to the next available position. Anytime the cue ball goes into a pocket, it must return to the \"D\".</p>\n" +
     "\n" +
     "<h2>The Objective</h2>\n" +
     "\n" +
@@ -178,16 +178,16 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<p>There are 3 ways to score points:</p>\n" +
     "\n" +
     "<ol>\n" +
-    "<li><strong>Canon</strong> - Where the white ball hits a colored ball and continues on to hit a different ball</li>\n" +
-    "<li><strong>Get a ball in</strong> - When a colored ball goes into one of its designated pockets</li>\n" +
-    "<li><strong>Go in off</strong> - When the white ball rebounds off a colored ball and goes into the rebounded balls pocket</li>\n" +
+    "<li><strong>Cannon</strong> - Where the cue ball hits an object ball and continues on to hit a different ball</li>\n" +
+    "<li><strong>Get a ball in</strong> - When an object ball goes into one of its designated pockets</li>\n" +
+    "<li><strong>Go in off</strong> - When the cue ball rebounds off an object ball and goes into the rebounded balls pocket</li>\n" +
     "</ol>\n" +
     "\n" +
     "\n" +
     "<p>Each ball has an associated point value:</p>\n" +
     "\n" +
     "<ul>\n" +
-    "<li>A canon = <strong>2 points</strong></li>\n" +
+    "<li>A cannon = <strong>2 points</strong></li>\n" +
     "<li>Yellow ball = <strong>2 points</strong></li>\n" +
     "<li>Green ball = <strong>3 points</strong></li>\n" +
     "<li>Blue ball = <strong>5 points</strong></li>\n" +
@@ -199,9 +199,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<p>Only certain balls can score points using certain pockets:</p>\n" +
     "\n" +
     "<ul>\n" +
-    "<li><strong>The yellow and green balls</strong> may only go in (or in off) either of the corner pockets at the start of the table</li>\n" +
+    "<li><strong>The yellow and green balls</strong> may only go in (or in off) either of the corner pockets at the bottom of the table</li>\n" +
     "<li><strong>The blue ball</strong> may only go in (or in off) the side pockets</li>\n" +
-    "<li><strong>The black ball</strong> may only go in (or in off) either of the corner pockets at the end of the table</li>\n" +
+    "<li><strong>The black ball</strong> may only go in (or in off) either of the corner pockets at the top of the table</li>\n" +
     "<li><strong>The pink ball</strong> may go in (or in off) any pocket</li>\n" +
     "<li><strong>The red ball</strong> must not go into any pocket, this is a foul and your score is reset to zero</li>\n" +
     "</ul>\n" +
@@ -209,23 +209,23 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "<h2>Getting \"Off the mark\"</h2>\n" +
     "\n" +
-    "<p>While your score is on zero, you can not begin to score any points until you successfully <strong>canon off the pink</strong> - this will result in 2 points and you may continue to score using any other method after that.</p>\n" +
+    "<p>While your score is on zero, you can not begin to score any points until you successfully <strong>cannon off the pink</strong> - this will result in 2 points and you may continue to score using any other method after that.</p>\n" +
     "\n" +
     "<h2>Special balls</h2>\n" +
     "\n" +
     "<p><strong>The brown ball</strong> (<em>aka the \"poo ball\"</em>) must not be touched at all. If this ball is moved or touched by any other ball, this is a foul - your score is reset to zero.</p>\n" +
     "\n" +
-    "<p><strong>The pink ball</strong> must result in a score. For example, hitting the white ball into the pink ball and not scoring any points is a foul - your score is reset to zero. Hitting the white ball into the pink ball, then the white continues on to hit the green ball is a valid canon - this is worth 2 points. Hitting the pink ball into any pocket (or going in off) is worth 6 points.</p>\n" +
+    "<p><strong>The pink ball</strong> must result in a score. For example, hitting the cue ball into the pink ball and not scoring any points is a foul - your score is reset to zero. Hitting the cue ball into the pink ball, then the cue ball continues on to hit the green ball is a valid cannon - this is worth 2 points. Hitting the pink ball into any pocket (or going in off) is worth 6 points.</p>\n" +
     "\n" +
-    "<p><strong>The red ball</strong> can only be used to canon onto. For example, hitting the white ball into the green ball, then the white ball continues on to hit the red ball is a valid canon - this is worth 2 points. Hitting the white ball into the red ball, then the white ball continues on to hit the green ball is a foul - your score is reset to zero.</p>\n" +
+    "<p><strong>The red ball</strong> can only be used to cannon onto. For example, hitting the cue ball into the green ball, then the cue ball continues on to hit the red ball is a valid cannon - this is worth 2 points. Hitting the cue ball into the red ball, then the cue ball continues on to hit the green ball is a foul - your score is reset to zero.</p>\n" +
     "\n" +
     "<h2>Lifeline</h2>\n" +
     "\n" +
-    "<p>If you make the white ball hit all four sides of the table without touching any other balls, you do not score but you are allowed to take another turn.</p>\n" +
+    "<p>If you make the cue ball hit all four sides of the table without touching any other balls, you do not score but you are allowed to take another turn.</p>\n" +
     "\n" +
     "<h2>Winners</h2>\n" +
     "\n" +
-    "<p>If you win and you go on to play another round, your target score is incremented by 10 points. For example, in the first game you reach exactly 31, in the next game you must reach 41 while the others players that have not won only need to get to 31.</p>\n" +
+    "<p>If you win and you go on to play another game, your target score is incremented by 10 points. For example, in the first game you reach exactly 31, in the next game you must reach 41 while the others players that have not won only need to get to 31.</p>\n" +
     "\n" +
     "<div class=\"row\">\n" +
     "  <div class=\"col-xs-12\">\n" +
@@ -245,12 +245,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <div class=\"row top-buffer-lg\">\n" +
     "      <div class=\"col-xs-3\">\n" +
-    "        <button ng-click=\"canon()\" class=\"canon btn btn-large btn-default btn-round\">\n" +
+    "        <button ng-click=\"cannon()\" class=\"cannon btn btn-large btn-default btn-round\">\n" +
     "          <!--\n" +
     "            Downloaded from: https://www.iconfinder.com/icons/174695/cannon_icon#size=128\n" +
     "            Created by: Visual Pharm - http://icons8.com\n" +
     "          -->\n" +
-    "          <img src=\"images/cannon-icon.png\" class=\"img-responsive\" alt=\"Canon (2)\"></img>\n" +
+    "          <img src=\"images/cannon-icon.png\" class=\"img-responsive\" alt=\"Cannon (2)\"></img>\n" +
     "        </button>\n" +
     "      </div>\n" +
     "      <div class=\"col-xs-3\">\n" +
