@@ -49,14 +49,14 @@ angular.module('app')
       },
 
       // TODO: These could probably be on the player object?
-      canon:  function(idx) { this.addScoreToPlayer(2, idx); },
-      yellow: function(idx) { this.addScoreToPlayer(2, idx); },
-      green:  function(idx) { this.addScoreToPlayer(3, idx); },
-      blue:   function(idx) { this.addScoreToPlayer(5, idx); },
-      pink:   function(idx) { this.addScoreToPlayer(6, idx); },
-      black:  function(idx) { this.addScoreToPlayer(7, idx); },
-      brown:  function(idx) { this.resetPlayerScore(idx); },
-      foul:   function(idx) { this.resetPlayerScore(idx); },
+      cannon:  function(idx) { this.addScoreToPlayer(2, idx); },
+      yellow:  function(idx) { this.addScoreToPlayer(2, idx); },
+      green:   function(idx) { this.addScoreToPlayer(3, idx); },
+      blue:    function(idx) { this.addScoreToPlayer(5, idx); },
+      pink:    function(idx) { this.addScoreToPlayer(6, idx); },
+      black:   function(idx) { this.addScoreToPlayer(7, idx); },
+      brown:   function(idx) { this.resetPlayerScore(idx); },
+      foul:    function(idx) { this.resetPlayerScore(idx); },
 
       addScoreToPlayer: function(points, playerId) {
         this.players[playerId].score += points;

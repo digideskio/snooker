@@ -31,7 +31,7 @@ angular.module('app')
       });
     };
 
-    $scope.canon  = function() { Game.canon(playerId); };
+    $scope.cannon  = function() { Game.cannon(playerId); };
     $scope.yellow = function() { Game.yellow(playerId); };
     $scope.green  = function() { Game.green(playerId); };
     $scope.blue   = function() { Game.blue(playerId); };
