@@ -159,7 +159,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div>\n" +
     "  <img src=\"images/table.png\" alt=\"setup diagram\" class=\"img-responsive img-center\" />\n" +
     "  <p class=\"text-center\">\n" +
-    "    <em>Laurence Snooker</em> is a great, yet frustrating game for any number of players.\n" +
+    "    <em>Poo Snooker</em> is a great, yet frustrating game for any number of players.\n" +
     "  </p>\n" +
     "</div>\n" +
     "\n" +
