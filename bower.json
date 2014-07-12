@@ -5,7 +5,7 @@
   "authors": [
     "Steven Occhipinti <dev@stevenocchipinti.com>"
   ],
-  "description": "A score board for \"Laurence Snooker\"",
+  "description": "A score board for \"Poo Snooker\"",
   "license": "MIT",
   "private": true,
   "dependencies": {
