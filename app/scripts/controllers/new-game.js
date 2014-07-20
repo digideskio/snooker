@@ -18,11 +18,4 @@ angular.module('app')
       Game.shufflePlayers();
     };
 
-    $scope.resetScores = function() {
-      Game.resetScores();
-    };
-
-    $scope.resetTargets = function() {
-      Game.resetTargets();
-    };
   });

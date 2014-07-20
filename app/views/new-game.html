@@ -1,14 +1,15 @@
 <form novalidate name="newGame" ng-controller="NewGameCtrl">
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <add-player></add-player>
+      <div class="top-buffer-lg"></div>
+      <new-game-buttons class="visible-lg visible-md"></new-game-buttons>
     </div>
 
-    <div ng-show="!players.length" class="hidden-md hidden-lg top-buffer-xl"></div>
+    <div class="col-md-7 col-md-offset-1">
 
-    <div class="col-md-6">
-      <table ng-show="players.length" class="game-setup table top-buffer-lg">
+      <table class="game-setup table">
         <thead>
           <tr>
             <th>Player</th>
@@ -21,7 +22,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="player in players" class="animation">
+          <tr ng-show="!players.length">
+            <td colspan="3"><em>...No players yet</em></td>
+          </tr>
+          <tr ng-show="players.length" ng-repeat="player in players" class="animation">
             <td ng-click="foo($index)">{{player.name}}</td>
             <td ng-click="foo($index)" class="text-center">{{player.target}}</td>
             <td>
@@ -36,24 +40,8 @@
         </tbody>
       </table>
 
-      <div ng-show="players.length" class="row top-buffer">
-        <div class="col-xs-12">
-          <a href="#/game" ng-click="resetScores()" class="visible-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
-          <a href="#/game/score/0" ng-click="resetScores()" class="hidden-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
-        </div>
-      </div>
+      <new-game-buttons class="visible-xs visible-sm"></new-game-buttons>
 
-      <div ng-show="players.length" class="row">
-        <div class="col-xs-12">
-          <button ng-click="resetTargets()" class="top-buffer btn btn-block btn-lg btn-default">Reset</a>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <a href="#/" class="top-buffer btn btn-block btn-lg">Back</a>
-        </div>
-      </div>
     </div>
   </div>
 
