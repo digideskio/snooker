@@ -1,18 +1,23 @@
 'use strict';
 
-describe('Controller: NewGameCtrl', function () {
+describe('Controller: WinnerModalCtrl', function () {
 
   // load the controller's module
   beforeEach(module('app'));
 
-  var NewGameCtrl,
-    scope;
+  var WinnerModalCtrl,
+    scope,
+    modalInstance;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    NewGameCtrl = $controller('NewGameCtrl', {
-      $scope: scope
+    modalInstance = { dismiss: jasmine.createSpy('modalInstance.dismiss') };
+
+    WinnerModalCtrl = $controller('WinnerModalCtrl', {
+      $scope: scope,
+      $modalInstance: modalInstance,
+      winner: {}
     });
   }));
 
