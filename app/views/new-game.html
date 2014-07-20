@@ -2,6 +2,7 @@
 
   <div class="row">
     <div class="col-md-6">
+
       <div class="row">
         <div class="col-xs-12">
           <label for="playerName">Player Name</label>
@@ -20,8 +21,10 @@
       </div>
     </div>
 
+    <div ng-show="!players.length" class="hidden-md hidden-lg top-buffer-xl"></div>
+
     <div class="col-md-6">
-      <table class="game-setup table top-buffer-lg">
+      <table ng-show="players.length" class="game-setup table top-buffer-lg">
         <thead>
           <tr>
             <th>Player</th>
@@ -34,7 +37,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-hide="players.length"><td><small>...No players yet</small></td></tr>
           <tr ng-repeat="player in players" class="animation">
             <td ng-click="foo($index)">{{player.name}}</td>
             <td ng-click="foo($index)" class="text-center">{{player.target}}</td>
@@ -50,14 +52,14 @@
         </tbody>
       </table>
 
-      <div class="row top-buffer">
+      <div ng-show="players.length" class="row top-buffer">
         <div class="col-xs-12">
-          <a href="#/game" ng-click="resetScores()" ng-disabled="!players.length" class="visible-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
-          <a href="#/game/score/0" ng-click="resetScores()" ng-disabled="!players.length" class="hidden-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
+          <a href="#/game" ng-click="resetScores()" class="visible-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
+          <a href="#/game/score/0" ng-click="resetScores()" class="hidden-xs top-buffer btn btn-primary btn-block btn-lg">Start Game</a>
         </div>
       </div>
 
-      <div class="row">
+      <div ng-show="players.length" class="row">
         <div class="col-xs-12">
           <button ng-click="resetTargets()" class="top-buffer btn btn-block btn-lg btn-default">Reset</a>
         </div>
