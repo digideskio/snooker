@@ -1,22 +1,51 @@
 'use strict';
 
 angular.module('app')
-  .factory('Game', function () {
+  .factory('Game', function (Player) {
 
-    var loadedGame = JSON.parse(localStorage.getItem('snookerGame'));
     var game = {
 
       DEFAULT_TARGET: 31,
       DEFAULT_INCREMENT: 10,
 
-      players: loadedGame ? loadedGame.players : [],
-      currentPlayerId: loadedGame ? loadedGame.currentPlayerId : 0,
+
+      // TODO: This could perhaps just take whatever is stored in localstorage
+      load: function() {
+        var loadedGame = JSON.parse(localStorage.getItem('snookerGame'));
+
+        this.currentPlayerId = loadedGame ? loadedGame.currentPlayerId : 0;
+        this.players = [];
+
+        var game = this;
+        if (loadedGame) {
+          angular.forEach(loadedGame.players, function(player) {
+            game.players.push(
+              new Player(
+                player.name,
+                player.target,
+                { scoreEvents: player.scoreEvents }
+              )
+            );
+          });
+        }
+      },
+
+      persist: function() {
+        localStorage.setItem('snookerGame', angular.toJson({
+          updatedAt: new Date().getTime(),
+          players: this.players,
+          currentPlayerId: this.currentPlayerId,
+        }));
+      },
+
+
+
       currentPlayer: function() {
         return this.players[this.currentPlayerId];
       },
 
       addPlayer: function(name, target) {
-        this.players.push({name: name, target: target, score: 0});
+        this.players.push(new Player(name, target));
         this.persist();
       },
 
@@ -51,40 +80,10 @@ angular.module('app')
         this.persist();
       },
 
-      // TODO: These could probably be on the player object?
-      cannon:  function() { this.addScoreToPlayer(2); },
-      yellow:  function() { this.addScoreToPlayer(2); },
-      green:   function() { this.addScoreToPlayer(3); },
-      blue:    function() { this.addScoreToPlayer(5); },
-      pink:    function() { this.addScoreToPlayer(6); },
-      black:   function() { this.addScoreToPlayer(7); },
-      brown:   function() { this.resetPlayerScore(); },
-      foul:    function() { this.resetPlayerScore(); },
-
-      addScoreToPlayer: function(points) {
-        this.currentPlayer().score += points;
-        if (this.currentPlayerFouled()) {
-          this.resetPlayerScore();
-        }
-        this.persist();
-      },
-
-      resetPlayerScore: function() {
-        this.currentPlayer().score = 0;
-        this.persist();
-      },
-
-      currentPlayerFouled: function() {
-        return (
-          this.currentPlayer().score > this.currentPlayer().target ||
-          this.currentPlayer().score === (this.currentPlayer().target - 1)
-        );
-      },
-
       resetScores: function() {
         this.currentPlayerId = 0;
         angular.forEach(this.players, function(player) {
-          player.score = 0;
+          player.resetScore();
         });
         this.persist();
       },
@@ -98,14 +97,32 @@ angular.module('app')
         this.persist();
       },
 
-      persist: function() {
-        localStorage.setItem('snookerGame', angular.toJson({
-          updatedAt: new Date().getTime(),
-          players: this.players,
-          currentPlayerId: this.currentPlayerId,
-        }));
+
+
+
+      // TODO: These last functions could probably be on the player object?
+      cannon:  function() { this.addScoreToPlayer(2); },
+      yellow:  function() { this.addScoreToPlayer(2); },
+      green:   function() { this.addScoreToPlayer(3); },
+      blue:    function() { this.addScoreToPlayer(5); },
+      pink:    function() { this.addScoreToPlayer(6); },
+      black:   function() { this.addScoreToPlayer(7); },
+      brown:   function() { this.addFoulToPlayer(); },
+      foul:    function() { this.addFoulToPlayer(); },
+
+      addScoreToPlayer: function(points) {
+        this.currentPlayer().addScore(points);
+        this.persist();
+      },
+
+      addFoulToPlayer: function() {
+        this.currentPlayer().foul();
+        this.persist();
       }
+
+
     };
 
+    game.load();
     return game;
   });

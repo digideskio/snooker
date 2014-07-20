@@ -7,7 +7,7 @@ angular.module('app')
 
 
     $scope.isWinner = function() {
-      return $scope.player.score === $scope.player.target;
+      return $scope.player.getScore() === $scope.player.target;
     };
 
     $scope.goToNextPlayer = function() {
@@ -39,7 +39,7 @@ angular.module('app')
     $scope.foul   = function() { Game.foul();   goToNextPlayerIfTheyFouled(); };
 
     function goToNextPlayerIfTheyFouled() {
-      if ($scope.player.score === 0) {
+      if ($scope.player.getScore() === 0) {
         $scope.goToNextPlayer();
       }
     }
