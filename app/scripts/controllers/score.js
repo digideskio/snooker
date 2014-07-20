@@ -37,7 +37,7 @@ angular.module('app')
     $scope.blue   = function() { Game.blue(playerId); };
     $scope.pink   = function() { Game.pink(playerId); };
     $scope.black  = function() { Game.black(playerId); };
-    $scope.brown  = function() { Game.brown(playerId); };
-    $scope.foul   = function() { Game.foul(playerId); };
+    $scope.brown  = function() { Game.brown(playerId); $scope.goToNextPlayer(); };
+    $scope.foul   = function() { Game.foul(playerId); $scope.goToNextPlayer(); };
 
   });
