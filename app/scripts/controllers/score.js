@@ -2,15 +2,12 @@
 
 angular.module('app')
   .controller('ScoreCtrl', function ($scope, $routeParams, $modal, $location, Game) {
-    var playerId = parseInt($routeParams.playerId);
-    var player = Game.players[playerId];
-    $scope.player = player;
-
-    Game.setCurrentPlayerId(playerId);
+    Game.setCurrentPlayerId(parseInt($routeParams.playerId));
+    $scope.player = Game.currentPlayer();
 
 
     $scope.isWinner = function() {
-      return player.score === player.target;
+      return $scope.player.score === $scope.player.target;
     };
 
     $scope.goToNextPlayer = function() {
@@ -18,7 +15,7 @@ angular.module('app')
     };
 
     $scope.declareWinner = function() {
-      Game.incrementTarget(playerId);
+      Game.incrementTarget();
       Game.shufflePlayers();
       $location.path('/new');
       $modal.open({
@@ -32,13 +29,13 @@ angular.module('app')
       });
     };
 
-    $scope.cannon  = function() { Game.cannon(playerId); };
-    $scope.yellow = function() { Game.yellow(playerId); };
-    $scope.green  = function() { Game.green(playerId); };
-    $scope.blue   = function() { Game.blue(playerId); };
-    $scope.pink   = function() { Game.pink(playerId); };
-    $scope.black  = function() { Game.black(playerId); };
-    $scope.brown  = function() { Game.brown(playerId); $scope.goToNextPlayer(); };
-    $scope.foul   = function() { Game.foul(playerId); $scope.goToNextPlayer(); };
+    $scope.cannon = function() { Game.cannon(); };
+    $scope.yellow = function() { Game.yellow(); };
+    $scope.green  = function() { Game.green(); };
+    $scope.blue   = function() { Game.blue(); };
+    $scope.pink   = function() { Game.pink(); };
+    $scope.black  = function() { Game.black(); };
+    $scope.brown  = function() { Game.brown(); $scope.goToNextPlayer(); };
+    $scope.foul   = function() { Game.foul(); $scope.goToNextPlayer(); };
 
   });

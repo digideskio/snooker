@@ -11,6 +11,9 @@ angular.module('app')
 
       players: loadedGame ? loadedGame.players : [],
       currentPlayerId: loadedGame ? loadedGame.currentPlayerId : 0,
+      currentPlayer: function() {
+        return this.players[this.currentPlayerId];
+      },
 
       addPlayer: function(name, target) {
         this.players.push({name: name, target: target, score: 0});
@@ -43,31 +46,31 @@ angular.module('app')
         this.persist();
       },
 
-      incrementTarget: function(playerId) {
-        this.players[playerId].target += this.DEFAULT_INCREMENT;
+      incrementTarget: function() {
+        this.currentPlayer().target += this.DEFAULT_INCREMENT;
         this.persist();
       },
 
       // TODO: These could probably be on the player object?
-      cannon:  function(idx) { this.addScoreToPlayer(2, idx); },
-      yellow:  function(idx) { this.addScoreToPlayer(2, idx); },
-      green:   function(idx) { this.addScoreToPlayer(3, idx); },
-      blue:    function(idx) { this.addScoreToPlayer(5, idx); },
-      pink:    function(idx) { this.addScoreToPlayer(6, idx); },
-      black:   function(idx) { this.addScoreToPlayer(7, idx); },
-      brown:   function(idx) { this.resetPlayerScore(idx); },
-      foul:    function(idx) { this.resetPlayerScore(idx); },
+      cannon:  function() { this.addScoreToPlayer(2); },
+      yellow:  function() { this.addScoreToPlayer(2); },
+      green:   function() { this.addScoreToPlayer(3); },
+      blue:    function() { this.addScoreToPlayer(5); },
+      pink:    function() { this.addScoreToPlayer(6); },
+      black:   function() { this.addScoreToPlayer(7); },
+      brown:   function() { this.resetPlayerScore(); },
+      foul:    function() { this.resetPlayerScore(); },
 
-      addScoreToPlayer: function(points, playerId) {
-        this.players[playerId].score += points;
-        if (this.players[playerId].score > this.players[playerId].target) {
-          this.resetPlayerScore(playerId);
+      addScoreToPlayer: function(points) {
+        this.currentPlayer().score += points;
+        if (this.currentPlayer().score > this.currentPlayer().target) {
+          this.resetPlayerScore();
         }
         this.persist();
       },
 
-      resetPlayerScore: function(playerId) {
-        this.players[playerId].score = 0;
+      resetPlayerScore: function() {
+        this.currentPlayer().score = 0;
         this.persist();
       },
 
