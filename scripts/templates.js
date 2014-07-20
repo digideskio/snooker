@@ -1,6 +1,81 @@
 angular.module('app').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('views/_add-player.html',
+    "<div class=\"row\">\n" +
+    "  <div class=\"col-xs-6\" style=\"padding-right: 5px;\">\n" +
+    "    <label for=\"playerName\">Player Name</label>\n" +
+    "    <input required autofocus ng-model=\"playerName\" placeholder=\"Player Name\" class=\"form-control\" id=\"playerName\">\n" +
+    "  </div>\n" +
+    "  <div class=\"col-xs-4\" style=\"padding-left: 0px; padding-right: 5px;\">\n" +
+    "    <label for=\"targetScore\">Target Score</label>\n" +
+    "    <input required ng-model=\"targetScore\" type=\"number\" value=\"31\" step=\"10\" min=\"31\" class=\"form-control\" id=\"targetScore\">\n" +
+    "  </div>\n" +
+    "  <div class=\"col-xs-2\" style=\"padding-left: 0px;\">\n" +
+    "    <button ng-click=\"addPlayer()\" ng-disabled=\"newGame.$invalid\" class=\"no-label btn btn-block\">\n" +
+    "      <span class=\"glyphicon glyphicon-plus\"></span>\n" +
+    "    </button>\n" +
+    "  </div>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('views/_new-game-buttons.html',
+    "<div ng-show=\"players.length\" class=\"row top-buffer\">\n" +
+    "  <div class=\"col-xs-12\">\n" +
+    "    <a href=\"#/game\" ng-click=\"resetScores()\" class=\"visible-xs top-buffer btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
+    "    <a href=\"#/game/score/0\" ng-click=\"resetScores()\" class=\"hidden-xs top-buffer btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div ng-show=\"players.length\" class=\"row\">\n" +
+    "  <div class=\"col-xs-12\">\n" +
+    "    <button ng-click=\"resetTargets()\" class=\"top-buffer btn btn-block btn-lg btn-default\">Reset</a>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "  <div class=\"col-xs-12\">\n" +
+    "    <a href=\"#/\" class=\"top-buffer btn btn-block btn-lg\">Back</a>\n" +
+    "  </div>\n" +
+    "</div>\n"
+  );
+
+
+  $templateCache.put('views/_new-game-player-table.html',
+    "<table class=\"game-setup table\">\n" +
+    "  <thead>\n" +
+    "    <tr>\n" +
+    "      <th>Player</th>\n" +
+    "      <th class=\"text-center\">Target Score</th>\n" +
+    "      <th class=\"text-right\">\n" +
+    "        <a ng-click=\"shufflePlayers()\">\n" +
+    "          <span class=\"glyphicon glyphicon-random\"></span>\n" +
+    "        </a>\n" +
+    "      </th>\n" +
+    "    </tr>\n" +
+    "  </thead>\n" +
+    "  <tbody>\n" +
+    "    <tr ng-show=\"!players.length\">\n" +
+    "      <td colspan=\"3\"><em>...No players yet</em></td>\n" +
+    "    </tr>\n" +
+    "    <tr ng-show=\"players.length\" ng-repeat=\"player in players\" class=\"animation\">\n" +
+    "      <td>{{player.name}}</td>\n" +
+    "      <td class=\"text-center\">{{player.target}}</td>\n" +
+    "      <td>\n" +
+    "        <button ng-click=\"removePlayer($index)\" type=\"button\" class=\"close\">\n" +
+    "          <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "        </button>\n" +
+    "        <button ng-click=\"editPlayer($index)\" type=\"button\" class=\"close\">\n" +
+    "          <span class=\"glyphicon glyphicon-pencil\"></span>\n" +
+    "        </button>\n" +
+    "      </td>\n" +
+    "    </tr>\n" +
+    "  </tbody>\n" +
+    "</table>\n"
+  );
+
+
   $templateCache.put('views/_scoreboard.html',
     "<table class=\"scoreboard table top-buffer-lg\">\n" +
     "  <thead>\n" +
@@ -78,79 +153,27 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('views/new-game.html',
-    "<form novalidate name=\"newGame\" ng-controller=\"NewGameCtrl\">\n" +
-    "\n" +
+    "<form novalidate name=\"newGame\">\n" +
     "  <div class=\"row\">\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "      <div class=\"row\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
-    "          <label for=\"playerName\">Player Name</label>\n" +
-    "          <input required autofocus ng-model=\"playerName\" placeholder=\"Player Name\" class=\"form-control\" id=\"playerName\">\n" +
-    "        </div>\n" +
-    "      </div>\n" +
     "\n" +
-    "      <div class=\"row top-buffer\">\n" +
-    "        <div class=\"col-xs-6\">\n" +
-    "          <label for=\"targetScore\">Target Score</label>\n" +
-    "          <input required ng-model=\"targetScore\" type=\"number\" value=\"31\" step=\"10\" min=\"31\" class=\"form-control\" id=\"targetScore\">\n" +
-    "        </div>\n" +
-    "        <div class=\"col-xs-6\">\n" +
-    "          <button ng-click=\"addPlayer()\" ng-disabled=\"newGame.$invalid\" class=\"no-label btn btn-block\">Add player</button>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
+    "    <div class=\"col-md-4\">\n" +
+    "      <add-player></add-player>\n" +
+    "      <div class=\"top-buffer-lg\"></div>\n" +
+    "\n" +
+    "      <!-- on devices >= md, show the buttons at the bottom of the first column -->\n" +
+    "      <new-game-buttons class=\"visible-lg visible-md\"></new-game-buttons>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-md-6\">\n" +
-    "      <table class=\"game-setup table top-buffer-lg\">\n" +
-    "        <thead>\n" +
-    "          <tr>\n" +
-    "            <th>Player</th>\n" +
-    "            <th class=\"text-center\">Target Score</th>\n" +
-    "            <th class=\"text-right\">\n" +
-    "              <a ng-click=\"shufflePlayers()\">\n" +
-    "                <span class=\"glyphicon glyphicon-random\"></span>\n" +
-    "              </a>\n" +
-    "            </th>\n" +
-    "          </tr>\n" +
-    "        </thead>\n" +
-    "        <tbody>\n" +
-    "          <tr ng-hide=\"players.length\"><td><small>...No players yet</small></td></tr>\n" +
-    "          <tr ng-repeat=\"player in players\" class=\"animation\">\n" +
-    "            <td ng-click=\"foo($index)\">{{player.name}}</td>\n" +
-    "            <td ng-click=\"foo($index)\" class=\"text-center\">{{player.target}}</td>\n" +
-    "            <td>\n" +
-    "              <button ng-click=\"removePlayer($index)\" type=\"button\" class=\"close\">\n" +
-    "                <span class=\"glyphicon glyphicon-remove\"></span>\n" +
-    "              </button>\n" +
-    "              <button ng-click=\"editPlayer($index)\" type=\"button\" class=\"close\">\n" +
-    "                <span class=\"glyphicon glyphicon-pencil\"></span>\n" +
-    "              </button>\n" +
-    "            </td>\n" +
-    "          </tr>\n" +
-    "        </tbody>\n" +
-    "      </table>\n" +
+    "    <div class=\"col-md-7 col-md-offset-1\">\n" +
+    "      <!-- Always show the table on md and lg devices -->\n" +
+    "      <new-game-player-table class=\"hidden-lg hidden-md\" ng-show=\"players.length\"></new-game-player-table>\n" +
+    "      <new-game-player-table class=\"hidden-xs hidden-sm\"></new-game-player-table>\n" +
     "\n" +
-    "      <div class=\"row top-buffer\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
-    "          <a href=\"#/game\" ng-click=\"resetScores()\" ng-disabled=\"!players.length\" class=\"visible-xs top-buffer btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
-    "          <a href=\"#/game/score/0\" ng-click=\"resetScores()\" ng-disabled=\"!players.length\" class=\"hidden-xs top-buffer btn btn-primary btn-block btn-lg\">Start Game</a>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "\n" +
-    "      <div class=\"row\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
-    "          <button ng-click=\"resetTargets()\" class=\"top-buffer btn btn-block btn-lg btn-default\">Reset</a>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
-    "\n" +
-    "      <div class=\"row\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
-    "          <a href=\"#/\" class=\"top-buffer btn btn-block btn-lg\">Back</a>\n" +
-    "        </div>\n" +
-    "      </div>\n" +
+    "      <!-- on xs and sm devices, show the buttons at the bottom of the page -->\n" +
+    "      <new-game-buttons class=\"visible-xs visible-sm\"></new-game-buttons>\n" +
     "    </div>\n" +
+    "\n" +
     "  </div>\n" +
-    "\n" +
     "</form>\n"
   );
 
