@@ -89,7 +89,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <tr ng-click=\"scorePlayer($index)\" ng-repeat=\"player in players\" ng-class=\"{active: $index==currentPlayerId}\">\n" +
     "      <td>{{player.name}}</td>\n" +
     "      <td class=\"text-center\">\n" +
-    "        {{player.score}}\n" +
+    "        {{player.getScore()}}\n" +
     "        <small>/{{player.target}}</small>\n" +
     "      </td>\n" +
     "    </tr>\n" +
@@ -264,7 +264,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <scoreboard></scoreboard>\n" +
     "  </div>\n" +
     "  <div class=\"score-panel col-sm-8\">\n" +
-    "    <h1 class=\"no-top-buffer\">{{player.name}}: {{player.score}}/{{player.target}}</h1>\n" +
+    "    <h1 class=\"no-top-buffer\">{{player.name}}: {{player.getScore()}}/{{player.target}}</h1>\n" +
     "\n" +
     "    <div class=\"row top-buffer-lg\">\n" +
     "      <div class=\"col-xs-3\">\n" +
