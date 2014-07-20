@@ -63,7 +63,7 @@ angular.module('app')
 
       addScoreToPlayer: function(points) {
         this.currentPlayer().score += points;
-        if (this.currentPlayer().score > this.currentPlayer().target) {
+        if (this.currentPlayerFouled()) {
           this.resetPlayerScore();
         }
         this.persist();
@@ -72,6 +72,13 @@ angular.module('app')
       resetPlayerScore: function() {
         this.currentPlayer().score = 0;
         this.persist();
+      },
+
+      currentPlayerFouled: function() {
+        return (
+          this.currentPlayer().score > this.currentPlayer().target ||
+          this.currentPlayer().score === (this.currentPlayer().target - 1)
+        );
       },
 
       resetScores: function() {

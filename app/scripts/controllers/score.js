@@ -29,13 +29,19 @@ angular.module('app')
       });
     };
 
-    $scope.cannon = function() { Game.cannon(); };
-    $scope.yellow = function() { Game.yellow(); };
-    $scope.green  = function() { Game.green(); };
-    $scope.blue   = function() { Game.blue(); };
-    $scope.pink   = function() { Game.pink(); };
-    $scope.black  = function() { Game.black(); };
-    $scope.brown  = function() { Game.brown(); $scope.goToNextPlayer(); };
-    $scope.foul   = function() { Game.foul(); $scope.goToNextPlayer(); };
+    $scope.cannon = function() { Game.cannon(); goToNextPlayerIfTheyFouled(); };
+    $scope.yellow = function() { Game.yellow(); goToNextPlayerIfTheyFouled(); };
+    $scope.green  = function() { Game.green();  goToNextPlayerIfTheyFouled(); };
+    $scope.blue   = function() { Game.blue();   goToNextPlayerIfTheyFouled(); };
+    $scope.pink   = function() { Game.pink();   goToNextPlayerIfTheyFouled(); };
+    $scope.black  = function() { Game.black();  goToNextPlayerIfTheyFouled(); };
+    $scope.brown  = function() { Game.brown();  goToNextPlayerIfTheyFouled(); };
+    $scope.foul   = function() { Game.foul();   goToNextPlayerIfTheyFouled(); };
+
+    function goToNextPlayerIfTheyFouled() {
+      if ($scope.player.score === 0) {
+        $scope.goToNextPlayer();
+      }
+    }
 
   });
