@@ -1,0 +1,30 @@
+<table class="game-setup table">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th class="text-center">Target Score</th>
+      <th class="text-right">
+        <a ng-click="shufflePlayers()">
+          <span class="glyphicon glyphicon-random"></span>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-show="!players.length">
+      <td colspan="3"><em>...No players yet</em></td>
+    </tr>
+    <tr ng-show="players.length" ng-repeat="player in players" class="animation">
+      <td>{{player.name}}</td>
+      <td class="text-center">{{player.target}}</td>
+      <td>
+        <button ng-click="removePlayer($index)" type="button" class="close">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button ng-click="editPlayer($index)" type="button" class="close">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

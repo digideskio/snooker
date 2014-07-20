@@ -15,8 +15,7 @@ angular
         templateUrl: 'views/rules.html'
       })
       .when('/new', {
-        templateUrl: 'views/new-game.html',
-        controller: 'NewGameCtrl'
+        templateUrl: 'views/new-game.html'
       })
       .when('/game', {
         templateUrl: 'views/game.html'
