@@ -19,6 +19,7 @@ angular.module('app')
 
     $scope.declareWinner = function() {
       Game.incrementTarget(playerId);
+      Game.shufflePlayers();
       $location.path('/new');
       $modal.open({
         templateUrl: 'views/_winner-modal.html',
