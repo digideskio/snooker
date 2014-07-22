@@ -264,7 +264,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <scoreboard></scoreboard>\n" +
     "  </div>\n" +
     "  <div class=\"score-panel col-sm-8\">\n" +
-    "    <h1 class=\"no-top-buffer\">{{player.name}}: {{player.getScore()}}/{{player.target}}</h1>\n" +
+    "    <h1 class=\"no-top-buffer\">\n" +
+    "      {{player.name}}: {{player.getScore()}}/{{player.target}}\n" +
+    "      <button ng-click=\"undo()\" ng-show=\"player.scoreEvents.length\" type=\"button\" class=\"btn btn-default btn pull-right\">\n" +
+    "        <span class=\"glyphicon glyphicon-step-backward\"></span> Undo\n" +
+    "      </button>\n" +
+    "    </h1>\n" +
     "\n" +
     "    <div class=\"row top-buffer-lg\">\n" +
     "      <div class=\"col-xs-3\">\n" +
