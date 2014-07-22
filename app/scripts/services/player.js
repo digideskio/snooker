@@ -13,6 +13,7 @@ angular.module('app')
       this.addScore = function(points) {
         this.scoreEvents.push(points);
         if (this.isFoulScore()) {
+          this.scoreEvents.pop();
           this.foul();
         }
       };
@@ -31,6 +32,10 @@ angular.module('app')
 
       this.resetScore = function() {
         this.scoreEvents = [];
+      };
+
+      this.undoScore = function() {
+        this.scoreEvents.pop();
       };
 
       this.isFoulScore = function() {

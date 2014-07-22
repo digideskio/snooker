@@ -29,6 +29,10 @@ angular.module('app')
       });
     };
 
+    $scope.undo = function() {
+      Game.undoPlayerScore();
+    };
+
     $scope.cannon = function() { Game.cannon(); goToNextPlayerIfTheyFouled(); };
     $scope.yellow = function() { Game.yellow(); goToNextPlayerIfTheyFouled(); };
     $scope.green  = function() { Game.green();  goToNextPlayerIfTheyFouled(); };

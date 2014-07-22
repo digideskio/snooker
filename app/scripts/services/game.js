@@ -118,6 +118,11 @@ angular.module('app')
       addFoulToPlayer: function() {
         this.currentPlayer().foul();
         this.persist();
+      },
+
+      undoPlayerScore: function() {
+        this.currentPlayer().undoScore();
+        this.persist();
       }
 
 
