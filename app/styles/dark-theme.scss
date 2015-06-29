@@ -1,0 +1,72 @@
+.dark-theme {
+  body {
+    background-color: #242424;
+    color: #A5A5A5;
+  }
+
+  header {
+    background-color: #373737;
+    a {
+      color: #B5B5B5;
+    }
+  }
+
+  .form-control {
+    background-color: #787878;
+    border-color: #FFF;
+    color: #FFF;
+  }
+
+  .glyphicon {
+    color: #FFF;
+  }
+
+  .btn:hover, .btn:focus {
+    color: #60B1F7;
+  }
+
+  .btn-default {
+    color: #BFBFBF;
+    background-color: #4C4C4C;
+    border-color: #6D6D6D;
+    &:hover, &:focus {
+      color: #FFF;
+      background-color: #626262;
+    }
+  }
+
+  .btn-success {
+    color: #BFBFBF;
+    background-color: #306430;
+    border-color: #398439;
+    &:hover, &:focus {
+      color: #FFF;
+      background-color: #2F6B2F
+    }
+  }
+
+  .btn-primary {
+    color: #BFBFBF;
+    background-color: #204A6E;
+  }
+
+  .scoreboard {
+    color: inherit;
+    &.table tbody tr.active td {
+      background-color: #909090;
+      color: #FFF;
+    }
+    &.table tbody tr td {
+      background-color: #444;
+    }
+  }
+
+  .score-panel {
+    .btn-round {
+      box-shadow: none;
+      .glyphicon-remove {
+        color: inherit;
+      }
+    }
+  }
+}
