@@ -9,6 +9,9 @@
     a {
       color: #B5B5B5;
     }
+    .toggle-brightness {
+      color: #555;
+    }
   }
 
   .form-control {
@@ -68,5 +71,13 @@
         color: inherit;
       }
     }
+  }
+
+  // color fixes for the pngs (probably should have use svgs with `fill`)
+  .poo.btn img {
+    filter: invert(25%);
+  }
+  .cannon.btn img {
+    filter: invert(92%);
   }
 }

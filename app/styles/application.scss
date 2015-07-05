@@ -26,16 +26,24 @@ $icon-font-path: "/fonts/";
   src: local('Pacifico Regular'), local('Pacifico-Regular'), url(/fonts/pacifico.ttf) format('truetype');
 }
 header {
-  h1 {
-    margin: 0px;
-    font-family: 'Pacifico', Helvetica;
-    font-size: 50px;
-  }
+  position: relative;
   background-color: #FAFAFA;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 20px;
   text-align: center;
+  .toggle-brightness {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #DDD;
+    font-size: 20px;
+  }
+  h1 {
+    margin: 0px;
+    font-family: 'Pacifico', Helvetica;
+    font-size: 50px;
+  }
   a { color: slategrey; }
   a:hover {
     text-decoration: none;
