@@ -145,11 +145,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "  <div class=\"visible-xs visible-sm main-menu col-md-6\">\n" +
     "    <a href=\"#/new\" class=\"no-label btn btn-success btn-block btn-lg\">New Game</a>\n" +
+    "    <a href=\"#/game\" class=\"no-label btn btn-default btn-block btn-lg\">Load Game</a>\n" +
     "    <a href=\"#/rules\" class=\"no-label btn btn-default btn-block btn-lg\">Rules</a>\n" +
     "  </div>\n" +
     "\n" +
     "  <div class=\"hidden-xs hidden-sm main-menu col-md-6\">\n" +
     "    <a href=\"#/new\" class=\"no-label btn btn-success btn-square btn-lg\">New Game</a>\n" +
+    "    <a href=\"#/game\" class=\"no-label btn btn-default btn-square btn-lg\">Load Game</a>\n" +
     "    <a href=\"#/rules\" class=\"no-label btn btn-default btn-square btn-lg\">Rules</a>\n" +
     "  </div>\n" +
     "\n" +
