@@ -268,13 +268,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "  <div class=\"hidden-xs col-sm-4\">\n" +
     "    <scoreboard></scoreboard>\n" +
     "  </div>\n" +
-    "  <div class=\"score-panel col-sm-8\">\n" +
-    "    <h1 class=\"no-top-buffer\">\n" +
-    "      {{player.name}}: {{player.getScore()}}/{{player.target}}\n" +
-    "      <button ng-click=\"undo()\" ng-show=\"player.scoreEvents.length\" type=\"button\" class=\"btn btn-default btn pull-right\">\n" +
-    "        <span class=\"glyphicon glyphicon-step-backward\"></span> Undo\n" +
-    "      </button>\n" +
-    "    </h1>\n" +
+    "  <div class=\"text-center score-panel col-sm-8\">\n" +
+    "    <h2 class=\"score-display text-center notext-center no-top-buffer\">\n" +
+    "      <p class=\"score-counter\">{{player.getScore()}}/{{player.target}}</p>\n" +
+    "      <p class=\"scorer-name\">{{player.name}}</p>\n" +
+    "    </h2>\n" +
     "\n" +
     "    <div class=\"row top-buffer-lg\">\n" +
     "      <div class=\"col-xs-3\">\n" +
@@ -324,6 +322,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "      </div>\n" +
     "      <div ng-hide=\"isWinner()\" class=\"col-xs-12\">\n" +
     "        <button ng-click=\"goToNextPlayer()\" class=\"top-buffer btn btn-primary btn-block btn-lg\">Next Player</button>\n" +
+    "        <button ng-click=\"undo()\" ng-show=\"player.scoreEvents.length\" class=\"top-buffer btn btn-link btn-block btn-lg\">Undo</button>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "\n" +
