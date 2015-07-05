@@ -98,6 +98,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('views/_toggle-brightness.html',
+    "<span ng-click=\"toggleBrightness()\" class=\"toggle-brightness glyphicon glyphicon-adjust\"/>\n"
+  );
+
+
   $templateCache.put('views/_winner-modal.html',
     "<!-- Modal -->\n" +
     "<div class=\"modal-header\">\n" +
