@@ -25,6 +25,7 @@ $icon-font-path: "/fonts/";
   font-weight: 400;
   src: local('Pacifico Regular'), local('Pacifico-Regular'), url(/fonts/pacifico.ttf) format('truetype');
 }
+
 header {
   position: relative;
   background-color: #FAFAFA;
@@ -103,6 +104,22 @@ header {
   .btn-round {
     margin: auto;
   }
+  .score-display {
+    border: 1px solid #EEE;
+    border-radius: 10px;
+    text-align: center;
+    display: inline-block;
+    padding: 20px 50px 0px 50px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    .score-counter {
+      font-size: 80px;
+      color: #444;
+    }
+    .scorer-name {
+      color: #777;
+    }
+  }
 }
 
 
@@ -142,4 +159,8 @@ header {
   &.foul { background: white; color: #E53939; }
   &.poo { background: #9C6D39; }
   img { margin: auto; }
+}
+
+.btn-link:hover {
+  text-decoration: none;
 }

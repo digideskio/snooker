@@ -65,6 +65,15 @@
   }
 
   .score-panel {
+    .score-display {
+      background-color: #555;
+      .score-counter {
+        color: #FFF;
+      }
+      .scorer-name {
+        color: #DDD;
+      }
+    }
     .btn-round {
       box-shadow: none;
       .glyphicon-remove {
